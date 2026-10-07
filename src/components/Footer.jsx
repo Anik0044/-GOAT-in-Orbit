@@ -1,5 +1,4 @@
-import React from 'react';
-import { Sparkles, Heart } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 export default function Footer({ setActiveSection }) {
   const scrollTo = (id) => {
@@ -71,9 +70,15 @@ export default function Footer({ setActiveSection }) {
         <div>
           &copy; 2026 GOAT in Orbit. All rights reserved.
         </div>
-        <div className="flex items-center gap-1 text-gray-400">
-          <span>Designed with anti-gravity passion</span>
-          <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500" />
+        <div className="flex items-center gap-1.5 text-gray-400 text-xs">
+          <span>Designed by</span>
+          <a
+            href="#"
+            className="text-[#FFD700] font-medium hover:underline hover:drop-shadow-[0_0_8px_rgba(255,215,0,0.6)] transition-all"
+          >
+            Anik Hossain
+          </a>
+          <span>❤️</span>
         </div>
       </div>
     </footer>
