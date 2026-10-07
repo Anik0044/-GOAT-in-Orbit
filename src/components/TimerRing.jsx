@@ -1,25 +1,27 @@
 import React from 'react';
 
-export default function TimerRing({ timeRemaining, totalTime = 5 }) {
+export default function TimerRing({ timeRemaining, totalTime = 10 }) {
   const radius = 32;
   const strokeWidth = 5;
   const normalizedRadius = radius - strokeWidth * 0.5;
   const circumference = normalizedRadius * 2 * Math.PI;
   const strokeDashoffset = circumference - (timeRemaining / totalTime) * circumference;
 
-  // Determine stroke color based on remaining 5s time
-  let strokeColor = '#22c55e'; // Green (5-4s)
+  // Determine stroke color based on remaining 10s time
+  // Green: 10-7s, Yellow: 6-4s, Red: 3-0s
+  let strokeColor = '#22c55e'; // Green (10-7s)
   let shadowGlow = 'rgba(34, 197, 94, 0.4)';
 
-  if (timeRemaining === 3 || timeRemaining === 2) {
-    strokeColor = '#eab308'; // Yellow (3-2s)
+  if (timeRemaining >= 4 && timeRemaining <= 6) {
+    strokeColor = '#eab308'; // Yellow (6-4s)
     shadowGlow = 'rgba(234, 179, 8, 0.4)';
-  } else if (timeRemaining <= 1) {
-    strokeColor = '#ef4444'; // Red (1-0s)
+  } else if (timeRemaining <= 3) {
+    strokeColor = '#ef4444'; // Red (3-0s)
     shadowGlow = 'rgba(239, 68, 68, 0.6)';
   }
 
-  const isPulsing = timeRemaining <= 2 && timeRemaining > 0;
+  // Pulse effect should trigger when time < 3 seconds
+  const isPulsing = timeRemaining < 3 && timeRemaining > 0;
 
   return (
     <div className={`relative flex items-center justify-center ${isPulsing ? 'animate-bounce' : ''}`}>

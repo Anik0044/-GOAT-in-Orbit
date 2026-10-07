@@ -15,7 +15,7 @@ export default function QuizSection() {
   const [score, setScore] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [isAnswerLocked, setIsAnswerLocked] = useState(false);
-  const [timeRemaining, setTimeRemaining] = useState(5); // 5 seconds per question
+  const [timeRemaining, setTimeRemaining] = useState(10); // 10 seconds per question
   const [leaderboard, setLeaderboard] = useState([]);
   const [particles, setParticles] = useState([]);
   const timerRef = useRef(null);
@@ -33,7 +33,7 @@ export default function QuizSection() {
     }
   }, []);
 
-  // Timer countdown loop when in 'QUIZ' state (5 seconds countdown)
+  // Timer countdown loop when in 'QUIZ' state (10 seconds countdown)
   useEffect(() => {
     if (gameState !== 'QUIZ' || isAnswerLocked || quizQuestions.length === 0) return;
 
@@ -63,7 +63,7 @@ export default function QuizSection() {
     setCurrentQuestionIndex(0);
     setSelectedOption(null);
     setIsAnswerLocked(false);
-    setTimeRemaining(5);
+    setTimeRemaining(10);
     setGameState('QUIZ');
   };
 
@@ -94,7 +94,7 @@ export default function QuizSection() {
     }, 1200);
   };
 
-  // Handle Timeout (5 seconds reached)
+  // Handle Timeout (10 seconds reached)
   const handleTimeOut = () => {
     setIsAnswerLocked(true);
     setTimeout(() => {
@@ -109,7 +109,7 @@ export default function QuizSection() {
       setCurrentQuestionIndex((prev) => prev + 1);
       setSelectedOption(null);
       setIsAnswerLocked(false);
-      setTimeRemaining(5);
+      setTimeRemaining(10);
     } else {
       finishQuiz();
     }
@@ -294,7 +294,7 @@ export default function QuizSection() {
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-                প্রতিটি প্রশ্নের জন্য ৫ সেকেন্ড সময়!
+                প্রতিটি প্রশ্নের জন্য ১০ সেকেন্ড সময় পাবেন।
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-gold" />
@@ -331,8 +331,8 @@ export default function QuizSection() {
               </div>
             </div>
 
-            {/* Circular Countdown Timer (5s) */}
-            <TimerRing timeRemaining={timeRemaining} totalTime={5} />
+            {/* Circular Countdown Timer (10s) */}
+            <TimerRing timeRemaining={timeRemaining} totalTime={10} />
           </div>
 
           {/* Progress Bar */}
@@ -471,7 +471,7 @@ export default function QuizSection() {
                 setCurrentQuestionIndex(0);
                 setSelectedOption(null);
                 setIsAnswerLocked(false);
-                setTimeRemaining(5);
+                setTimeRemaining(10);
                 setGameState('QUIZ');
               }}
               className="w-full sm:w-auto shadow-glow-gold"
